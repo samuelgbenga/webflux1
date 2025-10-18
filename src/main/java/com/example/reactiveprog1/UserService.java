@@ -23,4 +23,6 @@ public class UserService {
         return userRepository.findAll().log().map(userMapper::toUserResponse);
     }
 
+
+
 }

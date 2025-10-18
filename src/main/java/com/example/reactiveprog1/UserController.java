@@ -18,6 +18,8 @@ public class UserController {
 
     private final UserService userService;
 
+    private final UserWebClient userWebClient;
+
     @PostMapping
     public Mono<UserResponse> saveUser(@RequestBody UserRequest request) {
         try {
@@ -37,6 +39,11 @@ public class UserController {
                 .onBackpressureBuffer(10, BufferOverflowStrategy.DROP_OLDEST)
                 .delayElements(Duration.ofMillis(100))
                 .log();
+    }
+
+    @GetMapping("/justprint")
+    public void justPrint() {
+        userWebClient.printSomething();
     }
 
 }
